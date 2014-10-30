@@ -59,6 +59,7 @@ $(document).ready(function() {
             var clickedImg = $(this);
             var tile = clickedImg.data('tile');
             console.log(tile);
+
             flipTile(tile, clickedImg);
         });
     }); //start game button click
