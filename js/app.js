@@ -1,8 +1,14 @@
 // app.js: our main javascript file for this app
 "use strict";
 
+var prevImg;
+var currentImg;
+var currentTile;
+var prevTile;
+
 var tiles = [];
 var idx;
+
 for (idx = 1; idx <= 32; ++idx) {
     tiles.push({
         tileNum: idx,
@@ -12,7 +18,7 @@ for (idx = 1; idx <= 32; ++idx) {
     });
 } //for each tile
 
-console.log(tiles);
+//console.log(tiles);
 
 //when document is ready..
 $(document).ready(function() {
@@ -52,18 +58,47 @@ $(document).ready(function() {
         window.setInterval(function() {
             var elapsedSeconds = (Date.now() - startTime) / 1000;
             elapsedSeconds = Math.floor(elapsedSeconds);
-            $('#elapsed-seconds').text(elapsedSeconds + ' seconds');
+            if(elapsedSeconds == 1){
+                $('#elapsed-seconds').text(elapsedSeconds + ' second');
+            }
+            else {
+                $('#elapsed-seconds').text(elapsedSeconds + ' seconds');
+            }
         }, 1000);
 
         $('#game-board img').click(function(){
-            var clickedImg = $(this);
-            var tile = clickedImg.data('tile');
-            console.log(tile);
+            currentImg = $(this);
+            currentTile = currentImg.data('tile');
 
-            flipTile(tile, clickedImg);
+            if(!prevTile){
+                prevTile = currentTile;
+                prevImg = currentImg;
+            }
+            else if (currentTile === prevTile) {
+                return;
+            }
+            else {
+                console.log(prevImg);
+                checkMatch();
+                console.log('this is second click');
+            }
+            flipTile(currentTile, currentImg);
         });
     }); //start game button click
 }); //document ready function
+
+function checkMatch(){
+
+    if(currentTile != prevTile){
+        console.log('not the same');
+        console.log(currentTile);
+        console.log(prevTile);
+        flipTile(currentTile, currentImg);
+        flipTile(prevTile, prevImg);
+        prevImg = null;
+        prevTile = null;
+    }
+}
 
 function flipTile(tile, img) {
     img.fadeOut(100, function() {
