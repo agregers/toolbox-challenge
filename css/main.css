@@ -1,8 +1,16 @@
-
+body {
+    background-image: url(../img/background/stardust.png);
+}
 
 #game-board img {
-    width: 25%;
-    height: 25%;
-    padding: 5px;
+    width: 20%;
+    height: 20%;
+    padding: 8px;
     box-sizing: border-box;
+
+}
+
+h1, body {
+    color: #A2A1A8;
+    text-align: center;
 }

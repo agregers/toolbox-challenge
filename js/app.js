@@ -69,6 +69,7 @@ $(document).ready(function() {
         $('#game-board img').click(function(){
             currentImg = $(this);
             currentTile = currentImg.data('tile');
+            flipTile(currentTile, currentImg);
 
             if(!prevTile){
                 prevTile = currentTile;
@@ -82,7 +83,7 @@ $(document).ready(function() {
                 checkMatch();
                 console.log('this is second click');
             }
-            flipTile(currentTile, currentImg);
+
         });
     }); //start game button click
 }); //document ready function
@@ -93,10 +94,15 @@ function checkMatch(){
         console.log('not the same');
         console.log(currentTile);
         console.log(prevTile);
-        flipTile(currentTile, currentImg);
-        flipTile(prevTile, prevImg);
-        prevImg = null;
-        prevTile = null;
+
+        setTimeout(function(){
+            flipTile(currentTile, currentImg);
+            flipTile(prevTile, prevImg);
+            prevImg = null;
+            prevTile = null;
+        }, 100);
+
+
     }
 }
 
