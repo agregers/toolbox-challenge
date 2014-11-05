@@ -70,12 +70,16 @@ $(document).ready(function() {
             currentImg = $(this);
             currentTile = currentImg.data('tile');
             flipTile(currentTile, currentImg);
+            console.log(currentTile);
 
             if(!prevTile){
+                console.log('first click');
                 prevTile = currentTile;
                 prevImg = currentImg;
             }
-            else if (currentTile === prevTile) {
+            else if(currentTile === prevTile) {
+                //checkMatch();
+                console.log('its a match!');
                 return;
             }
             else {
@@ -92,16 +96,13 @@ function checkMatch(){
 
     if(currentTile != prevTile){
         console.log('not the same');
-        console.log(currentTile);
-        console.log(prevTile);
 
         setTimeout(function(){
             flipTile(currentTile, currentImg);
             flipTile(prevTile, prevImg);
             prevImg = null;
             prevTile = null;
-        }, 100);
-
+        }, 1000);
 
     }
 }
