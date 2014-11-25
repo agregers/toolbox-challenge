@@ -10,7 +10,12 @@ body {
 
 }
 
-h1, body {
+h1, body, head {
     color: #A2A1A8;
     text-align: center;
+    list-style-type: none;
+}
+
+ul{
+	list-style-type: none;
 }
