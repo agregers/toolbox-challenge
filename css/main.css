@@ -3,11 +3,14 @@ body {
 }
 
 #game-board img {
-    width: 20%;
-    height: 20%;
-    padding: 8px;
+    width: 7%;
+    height: 7%;
+    padding: 6px;
     box-sizing: border-box;
+}
 
+#game-board img:hover{
+	background: yellow;
 }
 
 h1, body, head {
